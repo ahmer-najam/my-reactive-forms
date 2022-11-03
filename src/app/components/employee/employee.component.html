@@ -1,0 +1,124 @@
+<form
+  [formGroup]="employeeForm"
+  action="form-horizontal"
+  (ngSubmit)="onSubmit()"
+>
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h3 class="panel-title">Employee Form</h3>
+    </div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="fullName">Full Name</label>
+            <input
+              type="text"
+              id="fullName"
+              name="fullName"
+              class="form-control"
+              formControlName="fullName"
+            />
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input
+              type="text"
+              id="email"
+              name="email"
+              class="form-control"
+              formControlName="email"
+            />
+          </div>
+        </div>
+        <!-- Sub Form Group for Skills -->
+        <div formGroupName="skills">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="skillName">Skill Name</label>
+              <input
+                type="text"
+                name="skillName"
+                class="form-control"
+                formControlName="skillName"
+              />
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="experienceInYears">Experience In Years</label>
+              <input
+                type="text"
+                id="experienceInYears"
+                name="experienceInYears"
+                class="form-control"
+                formControlName="experienceInYears"
+              />
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="proficiency">Proficiency</label>
+              <input
+                type="radio"
+                formControlName="proficiency"
+                name="proficiency"
+                value="beginner"
+                style="margin: 10px"
+              />Beginner
+              <input
+                type="radio"
+                formControlName="proficiency"
+                name="proficiency"
+                value="intermediate"
+                style="margin: 10px"
+              />Intermediate
+              <input
+                type="radio"
+                formControlName="proficiency"
+                name="proficiency"
+                value="advanced"
+                style="margin: 10px"
+              />Advanced
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="panel-footer">
+      <div class="btn-toolbar">
+        <button class="btn btn-primary" type="submit">Save</button>
+        <button class="btn btn-primary" type="button" (click)="onLoadData()">
+          Load Data
+        </button>
+        <button class="btn btn-primary" type="button" (click)="onPatchData()">
+          Patch Data
+        </button>
+      </div>
+    </div>
+  </div>
+</form>
+
+<hr />
+<table border="1">
+  <tr>
+    <th style="padding: 10px">Form Group</th>
+    <th style="padding: 10px">Form Control (fullName)</th>
+  </tr>
+  <tr>
+    <td style="padding: 10px">
+      touched: {{ employeeForm.touched }} <br />
+      dirty: {{ employeeForm.dirty }} <br />
+      valid: {{ employeeForm.valid }} <br />
+      value: {{ employeeForm.value | json }}
+    </td>
+    <td style="padding: 10px">
+      touched: {{ employeeForm.get("fullName").touched }} <br />
+      dirty: {{ employeeForm.get("fullName").dirty }} <br />
+      valid: {{ employeeForm.get("fullName").valid }} <br />
+      value: {{ employeeForm.get("fullName").value }}
+    </td>
+  </tr>
+</table>
